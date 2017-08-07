@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Doc: http://logback.qos.ch/manual/configuration.html
+-->
+
+<configuration>
+    <property name="APP_NAME" value="quesar"/>
+    <contextName>${APP_NAME}</contextName>
+    <conversionRule conversionWord="ip" converterClass="io.quesar.starter.logging.IpConverter"/>
+    <conversionRule conversionWord="pid" converterClass="io.quesar.starter.logging.PidNumberConverter"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>[%ip] %d{yyyy-MM-dd HH:mm:ss.SSS} %pid %-5level [%thread] %logger{32} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <logger name="ch.qos.logback" level="WARN"/>
+    <logger name="io.vertx" level="INFO"/>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="ASYNCSTDOUT"/>
+    </root>
+</configuration>
