@@ -15,7 +15,7 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <charset>UTF-8</charset>
             <pattern>
-                [%green(%ip)] %d{yyyy-MM-dd HH:mm:ss.SSS} %magenta(%pid) [%thread] %highlight(%-5level) %cyan(%logger{64}) - %msg%n
+                [%green(%ip)] %date{yyyy-MM-dd HH:mm:ss.SSS} %magenta(%pid) [%thread] %highlight(%-5level) %cyan(%logger{32}) - %msg%n
             </pattern>
         </encoder>
     </appender>
@@ -23,9 +23,6 @@
     <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="STDOUT"/>
     </appender>
-
-    <logger name="ch.qos.logback" level="WARN"/>
-    <logger name="io.vertx" level="INFO"/>
 
     <root>
         <level value="INFO"/>
